@@ -4,9 +4,9 @@ import time
 import random
 
 def Login():
-    username="1429077642@qq.com"
-    uid="5706670755"
-    password="duoxihuanni123"
+    username=""
+    uid=""
+    password=""
 
     chrome_driver="D:\Python\ChromeDrive\chromedriver.exe"
 
@@ -49,7 +49,7 @@ def Login():
         
     time.sleep(1)
 
-    browser.get("https://weibo.com/u/5706670755/home")
+    browser.get("https://weibo.com/u/"+uid+"/home")
     
     time.sleep(1)
     return browser
