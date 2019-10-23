@@ -7,7 +7,7 @@
 怎么使用：
 1. 打开 deleteWeibo.py ，修改里面的 username 和 password 的值。还有浏览器驱动那一部分需要根据情况修改。
 2. 根据需要在文件里写函数调用语句。
-2. 在控制台运行 python py.py
+2. 在控制台运行 python deleteWeibo.py
 3. 当要求你输入验证码时输入验证码。
 
 PS：可能以后会增加功能，修正稳定性，可能。
