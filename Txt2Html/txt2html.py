@@ -12,16 +12,24 @@ def main(txt):
     print("标题：", title)
     print("作者：", author)
     lines=[x.strip() for x in lines]
-    writelist=["<p>"+x+"</p>" for x in lines]
     htmlname=txt.split(".")[0]
-    htmltitle="一天一苹果，傻子远离我"
-    writehead=["<html>", "<head>", "<title> "+ htmltitle +" </title>", \
-               "<style> h1 { font-size: 50px; } h2 { font-size: 40px; } p { font-size: 54px; } </style>", \
-               "</head>", "<body>"]
-    writetile=["</body>", "</html>"]
+    htmltitle="《"+title+"》 作者："+author
+    writehead=["<html>", "<head>", \
+               "<meta name='viewport' content='width=device-width, initial-scale=1'>", \
+               "<title> "+ htmltitle +" </title>", \
+               "<link href='https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>", \
+               # "<style> h1 { font-size: 50px; } h2 { font-size: 40px; } p { font-size: 54px; } </style>", \
+               "</head>", "<body>", \
+               "<div class='container'>"]
+    writetitle=["<div class='page-header'> <h1> ", title, " <small>", author, " </small> </h1> </div>"]
+    writelist=["<p class='lead'>"+x.strip()+"</p>" for x in lines]
+    writetile=["<br/ >", \
+               "<blockquote>", "<p>", "书卷多情似故人，晨昏忧乐每相亲。", "</p>", \
+               "<footer>", "《观书》 于谦 【明】", "</footer> </blockquote>"
+               "<br/ >", "</div>", "</body>", "</html>"]
     with open(htmlname+".html", "w") as html:
         html.writelines(writehead)
-        html.writelines(["<h1>"+ title +"</h2>", "<h2>"+ author +"</h2>"])
+        html.writelines(writetitle)
         html.writelines(writelist)
         html.writelines(writetile)
     print("OK!")
