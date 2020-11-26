@@ -23,43 +23,62 @@ def replace_res(str_in):
             # print(i[1])
             return i[1]
 
-s=input(": ")
-u=s.encode("utf-8")
-# print(u)
-l=str(u)[2:-1]
-if "\\" in str(u):
-    l=l.split("\\")
+def toMorse(strInput):
+    u=strInput.encode("utf-8")
+    l=str(u)[2:-1]
+    if "\\" in str(u):
+        l=l.split("\\")
 
-# print(l)
+    # print(l)
 
-ll=list("".join(l))
-# print(ll)
-out=map(replace_Morse, ll)
-output="/".join(list(out))
-print(output)
+    ll=list("".join(l))
+    # print(ll)
+    out=map(replace_Morse, ll)
+    output="/".join(list(out))
+    # print(output)
+    return output
 
-l=output.split("/")
-# print(l)
-out2=list(map(replace_res, l))
-# print(out2)
-l2=[]
-index=0
-while index<len(out2):
-    if out2[index]=='x' and index<=len(out2)-2:
-        ss="\\"+out2[index]+out2[index+1]+out2[index+2]
-        l2.append(ss)
-        # print(ss)
-        index+=3
-        # print(index)
-    elif out2[index]!='x' and index<len(out2):
-        l2.append(out2[index])
-        # print(out2[index])
-        index+=1
-    # elif out2[index]!='x' and index==len(out2)-1:
-        # l2.append(out2[index])
-        # print(out2[index])
-# print(l2)
-output2="".join(l2)
-output2="b'"+output2+"'"
-# print(output2)
-print(eval(output2).decode("utf-8"))
+
+def toChinese(strInput):
+    l=strInput.split("/")
+    # print(l)
+    out2=list(map(replace_res, l))
+    # print(out2)
+    l2=[]
+    index=0
+    while index<len(out2):
+        if out2[index]=='x' and index<=len(out2)-2:
+            ss="\\"+out2[index]+out2[index+1]+out2[index+2]
+            l2.append(ss)
+            # print(ss)
+            index+=3
+            # print(index)
+        elif out2[index]!='x' and index<len(out2):
+            l2.append(out2[index])
+            # print(out2[index])
+            index+=1
+        # elif out2[index]!='x' and index==len(out2)-1:
+            # l2.append(out2[index])
+            # print(out2[index])
+    # print(l2)
+    output2="".join(l2)
+    output2="b'"+output2+"'"
+    # print(output2)
+    out = eval(output2).decode("utf-8")
+    # print(out)
+    return out
+
+rawStr = input("Please input your string: ")
+
+flag = input("What method do you want? \n1. Chinese to Morse.    2. Morse to Chinese.  ")
+
+MorseStr = ''
+
+if flag == '1':
+    MorseStr = toMorse(rawStr)
+
+elif flag == '2':
+    MorseStr = toChinese(rawStr)
+
+print("Translated string is : ")
+print(MorseStr)
